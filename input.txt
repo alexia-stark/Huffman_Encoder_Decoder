@@ -1,0 +1,7 @@
+Huffman coding is an algorithm used for lossless data compression. The process works by assigning variable-length codes to input characters, with shorter codes assigned to more frequent characters. This is the core principle of prefix coding, ensuring that no code is a prefix of another, which makes the bitstream uniquely decodable.
+
+To build the tree, we first calculate the frequency of each character in the input. These frequencies are stored in a priority queue. In each step, the two nodes with the lowest frequencies are removed and joined into a new internal node with a frequency equal to their sum. This process repeats until only one node remains: the root of the Huffman tree.
+
+When we save the file, we must include the tree structure so the decoder can reconstruct it. This adds some overhead to the final file. In your specific implementation, you are using a 14-byte header and a serialized version of the tree. For very small files, this overhead can actually make the "compressed" file larger than the original. However, as the input size increases, the efficiency of the bit-reduction far outweighs the fixed size of the header and tree.
+
+For example, in a large text file where the letter 'e' appears thousands of times, representing it with only 3 bits instead of the standard 8 bits (1 byte) saves an enormous amount of space. This is why Huffman coding remains a fundamental technique in modern compression formats like ZIP, GZIP, and JPEG.

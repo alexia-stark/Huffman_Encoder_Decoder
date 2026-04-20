@@ -1,0 +1,11 @@
+# CLion/IDE stuff
+.idea/
+cmake-build-*/
+
+# Doxygen output
+html/
+latex/
+
+# Binaries
+*.exe
+*.o
